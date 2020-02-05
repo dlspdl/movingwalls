@@ -5,6 +5,16 @@ Was planning on adding APIs for the Hotel, Airplane and City Taxi.
 Would base on the rate of everything base on real time prices and mock computation from respective APIs,
 but didnt find any free API so will make manual records via DB for the sake of test.
 
+# Chapter 2 - Feb 5 2020 21:00 - 23:00
+Due to the complication of what I've thought of using for the computation of the distance between locations
+I changed the structure of the database and tested geopy to compute the distance between cities.
+It works like a charm but there is no routing of streets and traffic.
+So I'm going to base the computation based on the this computation
+
+BASE FARE * DISTANCE IN KPH + ( (BASE FARE * DISTANCE IN KPH) * (DISTANCE IN KPH / 20 KPH)
+
+Due to the place being far the taxi will need additional for their gas and whatnot(Just an additional). 
+
 #Requirements
 --EMPTY FOR NOW TILL THE PROGRAM IS FINISH
 #END Requirements
