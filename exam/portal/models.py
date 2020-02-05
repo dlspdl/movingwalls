@@ -51,15 +51,48 @@ class TravelDetails(models.Model):
     default=DRAFT,
     ) 
 
-class City(models.Model):
+class BaseFare(models.Model):
+  """
+  For testing purposes will not add audit of who editted.
+  """
+  fare_type = models.CharField(max_length=10, null=False, blank=False)
+  price = models.DecimalField(
+    max_digits=5, decimal_places=2, 
+    null=False, blank=False)
+  tstamp = models.DateField(auto_now=True) 
+
+#  def save(self, *args, **kwargs):
+#    if not self._state.adding:
+#      
+#    super().save(*args, **kwargs)
+
+class BaseFareHist(models.Model):
+  fare_type = models.CharField(max_length=10, null=False, blank=False)
+  price = models.DecimalField(
+    max_digits=5, decimal_places=2, 
+    null=False, blank=False)
+  start_date = models.DateField(null=False, blank=False) 
+  end_date = models.DateField(null=False, blank=False) 
+ 
+class Location(models.Model):
+  """
+  tier field is used to to check if one area is within car travel
+  longitude and latitude is the coordinates of a location.
+  """
   name = models.CharField(max_length=50, null=False, blank=False)
   tier = models.PositiveSmallIntegerField(
     help_text='Defines the region of the city for fare computation.', 
     null=False, blank=False) 
+  longitude = models.DecimalField(
+    max_digits=4, decimal_places=4, 
+    null=False, blank=False)
+  latitude = models.DecimalField(
+    max_digits=4, decimal_places=4, 
+    null=False, blank=False)
 
 class HotelDetails(models.Model):
   name = models.CharField(max_length=100, null=False, blank=False)
-  city = models.ForeignKey(City, on_delete=models.PROTECT)
+  location = models.ForeignKey(Location, on_delete=models.PROTECT)
   start_date = models.DateField(null=False, blank=False) 
   end_date = models.DateField(null=False, blank=False) 
   price = models.DecimalField(
