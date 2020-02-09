@@ -8,10 +8,10 @@ class Location(models.Model):
   """
   name = models.CharField(max_length=50, null=False, blank=False)
   longitude = models.DecimalField(
-    max_digits=4, decimal_places=4, 
+    max_digits=13, decimal_places=8, 
     null=False, blank=False)
   latitude = models.DecimalField(
-    max_digits=4, decimal_places=4, 
+    max_digits=13, decimal_places=8, 
     null=False, blank=False)
   tier = models.PositiveSmallIntegerField(
     help_text='Defines the region of the city for fare computation.', 
@@ -48,7 +48,7 @@ class Hotel(models.Model):
   price = models.DecimalField(
     max_digits=5, decimal_places=2, 
     null=False, blank=False)
-  Capacity = models.PositiveSmallIntegerField(null=False, blank=False) 
+  capacity = models.PositiveSmallIntegerField(null=False, blank=False) 
  
 ## Main Form Model
 
