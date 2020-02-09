@@ -17,13 +17,31 @@ class Location(models.Model):
     help_text='Defines the region of the city for fare computation.', 
     null=False, blank=False) 
 
+  def __str__(self):
+    return '%s' % (self.name,)
+
+  def __unicode__(self):
+    return '%s' % (self.name,)
+
 class Vehicle(models.Model): 
   name = models.CharField(max_length=10, primary_key=True)
+
+  def __str__(self):
+    return '%s' % (self.name,)
+
+  def __unicode__(self):
+    return '%s' % (self.name,)
  
 class Airport(models.Model):
   name = models.CharField(max_length=100, null=False, blank=False)
   location = models.ForeignKey(Location, on_delete=models.PROTECT)
   capacity = models.PositiveSmallIntegerField(null=False, blank=False) 
+
+  def __str__(self):
+    return '%s' % (self.name,)
+
+  def __unicode__(self):
+    return '%s' % (self.name,)
 
 class Fare(models.Model):
   """
@@ -36,9 +54,22 @@ class Fare(models.Model):
     null=False, blank=False)
   tstamp = models.DateField(auto_now=True) 
 
+  def __str__(self):
+    return '%s\t%s' % (self.vehicle,self.fare_type)
+
+  def __unicode__(self):
+    return '%s\t%s' % (self.vehicle,self.fare_type)
+
+
 class FareFormula(models.Model):
   vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=False)
   formula = models.CharField(max_length=100, null=False, blank=False) 
+
+  def __str__(self):
+    return '%s' % (self.vehicle,)
+
+  def __unicode__(self):
+    return '%s' % (self.vehicle,)
 
 class Hotel(models.Model):
   name = models.CharField(max_length=100, null=False, blank=False)
@@ -49,6 +80,12 @@ class Hotel(models.Model):
     max_digits=5, decimal_places=2, 
     null=False, blank=False)
   capacity = models.PositiveSmallIntegerField(null=False, blank=False) 
+
+  def __str__(self):
+    return '%s' % (self.name,)
+
+  def __unicode__(self):
+    return '%s' % (self.name,)
  
 ## Main Form Model
 
