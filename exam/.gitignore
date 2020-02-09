@@ -1,4 +1,5 @@
 auth.json
 portal.json
 */*/migrations/*
+*/*/__pycache__/*
 db.sqlite3
