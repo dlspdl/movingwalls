@@ -81,7 +81,7 @@ class Hotel(models.Model):
   start_date = models.DateField(null=False, blank=False) 
   end_date = models.DateField(null=False, blank=False) 
   price = models.DecimalField(
-    max_digits=5, decimal_places=2, 
+    max_digits=12, decimal_places=2, 
     null=False, blank=False)
   no_of_rooms = models.PositiveSmallIntegerField(
     null=False, 
