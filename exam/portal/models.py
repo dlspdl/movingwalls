@@ -1,13 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-def validate_nonzero(value):
-  if value == 0:
-    raise ValidationError(
-      _('Quantity %(value)s is not allowed'),
-      params={'value': value},
-    )
-
 class Location(models.Model):
   """
   tier field is used to to check if one area is within car travel
@@ -83,8 +76,7 @@ class Hotel(models.Model):
   room_name = models.CharField(max_length=100, null=False, blank=False)
   no_of_pax = models.PositiveSmallIntegerField(
     null=False, 
-    default=0, 
-    validators=[validate_nonzero])
+    default=0) 
   location = models.ForeignKey(Location, on_delete=models.PROTECT)
   start_date = models.DateField(null=False, blank=False) 
   end_date = models.DateField(null=False, blank=False) 
@@ -93,8 +85,7 @@ class Hotel(models.Model):
     null=False, blank=False)
   no_of_rooms = models.PositiveSmallIntegerField(
     null=False, 
-    default=0, 
-    validators=[validate_nonzero])
+    default=0) 
 
   def __str__(self):
     return '%s' % (self.name,)
