@@ -1,0 +1,4 @@
+auth.json
+portal.json
+migrations/*
+db.sqlite3
