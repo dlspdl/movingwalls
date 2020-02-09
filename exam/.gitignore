@@ -1,4 +1,4 @@
 auth.json
 portal.json
-migrations/*
+*/*/migrations/*
 db.sqlite3
