@@ -54,14 +54,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#REST_FRAMEWORK = {
-#    # Use Django's standard `django.contrib.auth` permissions,
-#    # or allow read-only access for unauthenticated users.
-#    'DEFAULT_PERMISSION_CLASSES': [
-#        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-#    ]
-#}
-
 ROOT_URLCONF = 'exam.urls'
 
 LOGIN_REDIRECT_URL = 'home'
@@ -96,7 +88,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -120,15 +111,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Asia/Singapore'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

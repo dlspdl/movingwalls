@@ -124,7 +124,11 @@ class TravelDetails(models.Model):
     on_delete=models.PROTECT)
   start_date = models.DateField(null=False, blank=False) 
   end_date = models.DateField(null=False, blank=False) 
-  desc = models.CharField(max_length=300, blank=True, null=True) 
+  origin = models.ForeignKey(
+    Location,
+    on_delete = models.PROTECT,
+    null = False 
+    )
   mode_of_travel = models.CharField(
     max_length=4,
     choices=MODE_OF_TRAVEL,
@@ -132,27 +136,27 @@ class TravelDetails(models.Model):
     ) 
   airport_origin = models.ForeignKey(
     Airport,
-    related_name='airport_origin',
-    on_delete=models.PROTECT,
-    null=True)
+    related_name = 'airport_origin',
+    on_delete = models.PROTECT,
+    null = True)
   airport_dest = models.ForeignKey(
     Airport,
-    related_name='airport_dest',
-    on_delete=models.PROTECT,
-    null=True)
+    related_name = 'airport_dest',
+    on_delete = models.PROTECT,
+    null = True)
   hotel = models.ForeignKey(
     Hotel,
-    on_delete=models.PROTECT,
-    null=True)
+    on_delete = models.PROTECT,
+    null = True)
   approver = models.ForeignKey(
     User, 
-    related_name='approver',
-    on_delete=models.PROTECT,
-    null=True)
-  back_and_forth = models.BooleanField(null=True,default=True)
+    related_name = 'approver',
+    on_delete = models.PROTECT,
+    null = True)
+  back_and_forth = models.BooleanField(null=True, default=True)
   status = models.CharField(
-    max_length=10,
-    choices=STATUS,
-    default=DRAFT,
+    max_length = 10,
+    choices = STATUS,
+    default = DRAFT,
     ) 
   approver_feedback = models.CharField(max_length=300, blank=True, null=True) 

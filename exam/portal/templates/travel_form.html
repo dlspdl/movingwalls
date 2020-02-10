@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load staticfiles%}
+
+{% load crispy_forms_tags %}
+
+{% block imports %}
+  <script src="{% static 'js/travel_form.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  {% crispy form %}
+{% endblock %}
