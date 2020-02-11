@@ -10,7 +10,7 @@
 <html>
 <head>
   {% if not user.is_authenticated and request.get_full_path != '/accounts/login/' %}
-    <meta http-equiv="REFRESH" content="0;url=accounts/login/">
+    <meta http-equiv="REFRESH" content="0;url=/accounts/login/">
   {% elif user.is_authenticated and request.get_full_path == '/accounts/login/' %}
     <meta http-equiv="REFRESH" content="0;url=/">
   {% endif %}

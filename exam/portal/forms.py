@@ -6,10 +6,10 @@ from portal.models import TravelDetails
 class TravelForm(forms.ModelForm):
   class Meta:
     model = TravelDetails
-    fields = (
-      'origin', 'mode_of_travel', 'start_date', 'end_date', 
-      'airport_origin', 'airport_dest', 'hotel', 'approver'
-    )
+    exclude = [
+      'name','status','approver_feedback',
+      'car_formula','plane_formula'
+    ]
 
   def __init__(self, *args, **kwargs):
     super().__init__(*args, **kwargs)

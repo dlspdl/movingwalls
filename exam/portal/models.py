@@ -138,25 +138,29 @@ class TravelDetails(models.Model):
     Airport,
     related_name = 'airport_origin',
     on_delete = models.PROTECT,
-    null = True)
+    null = True,
+    blank = True)
   airport_dest = models.ForeignKey(
     Airport,
     related_name = 'airport_dest',
     on_delete = models.PROTECT,
-    null = True)
+    null = True,
+    blank = True)
   hotel = models.ForeignKey(
     Hotel,
     on_delete = models.PROTECT,
     null = True)
+  back_and_forth = models.BooleanField(null=False, default=False)
+  car_formula = models.CharField(max_length=100, null=False, blank=False)
+  plane_formula = models.CharField(max_length=100, null=True, blank=False)
   approver = models.ForeignKey(
     User, 
     related_name = 'approver',
     on_delete = models.PROTECT,
     null = True)
-  back_and_forth = models.BooleanField(null=True, default=True)
+  approver_feedback = models.CharField(max_length=300, blank=True, null=True) 
   status = models.CharField(
     max_length = 10,
     choices = STATUS,
     default = DRAFT,
     ) 
-  approver_feedback = models.CharField(max_length=300, blank=True, null=True) 
