@@ -151,8 +151,8 @@ class TravelDetails(models.Model):
     on_delete = models.PROTECT,
     null = True)
   back_and_forth = models.BooleanField(null=False, default=False)
-  car_formula = models.CharField(max_length=100, null=False, blank=False)
-  plane_formula = models.CharField(max_length=100, null=True, blank=False)
+  car_formula = models.CharField(max_length=300, null=False, blank=False)
+  plane_formula = models.CharField(max_length=300, null=True, blank=False)
   approver = models.ForeignKey(
     User, 
     related_name = 'approver',

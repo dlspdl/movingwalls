@@ -1,0 +1,67 @@
+from datetime import datetime as dt
+
+from django.conf import settings
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic import CreateView
+
+from portal.forms import TravelForm
+from portal.models import Airport, Hotel, Fare 
+from portal.models import FareFormula, Location, TravelDetails
+
+def validator(objects):
+  start_date = objects.start_date
+  end_date = objects.end_date
+  
+  if start_date >= end_date:
+    response = "Error: Start Date later than End Date."
+    return response, objects
+
+  origin = objects.origin
+  hotel = objects.hotel
+  airplane_origin = objects.airplane_origin if hasattr(objects, 'airplane_origin') else None
+  airplane_dest = objects.airplane_dest if hasattr(objects, 'airplane_dest') else None
+  print(airport_origin)
+  print(airport_dest)
+  
+  if origin.tier != hotel.location.tier:
+    if airplane_origin == None or airplane_dest == None:
+      response = origin.name + " is not on the same region as " + hotel.location.name + " must book a flight."
+      return response, objects
+    elif airplane_origin == airplane_dest:
+      response = "Cannot book same airport"
+      return response, objects 
+    elif airplane_origin.location.tier != origin.tier:
+      response = "Origin and airport origin must be at the same tier."
+      return response, objects 
+    elif airplane_dest.location.tier != hotel.location.tier:
+      response = "Hotel and airport dest must be at the same tier."
+      return response, objects 
+     
+  response = "Success"
+  return response, objects
+
+class TraverlInsertView(CreateView):
+  model = TravelDetails
+  form_class = TravelForm
+  template_name = settings.BASE_DIR + '/portal/templates/travel_form.html'
+  
+  def form_valid(self, form):
+    self.object = form.save(commit = False)
+    self.object.name = self.request.user 
+
+    #Validator
+    response, objects = validator(self.object)
+
+    if response != "Success":
+      messages.add_message(self.request, messages.ERROR, response)
+      return HttpResponseRedirect(reverse('travelform'))
+    else:
+      #Success
+      self.object = objects
+      messages.add_message(self.request, messages.INFO, 'Success.')
+      self.object.save()
+      return HttpResponseRedirect(reverse('travelform'))
+  
+    
