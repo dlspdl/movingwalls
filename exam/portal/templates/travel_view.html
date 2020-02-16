@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Travel View{% endblock %}
+
+{% block content %}
+  <div class="container">
+    {% for row in travel_details %}
+      <div class="row">
+      {{ row.name }} 
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

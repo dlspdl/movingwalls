@@ -1,6 +1,7 @@
 {% for o in user.groups.all %}
   {% if o.name == "MANAGER" %}
-  {% elif o == "F_MANAGER" %} 
+  {% endif %}
+  {% if o == "F_MANAGER" %} 
   {% endif %}
 {% endfor %}
 

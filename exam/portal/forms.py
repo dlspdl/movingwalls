@@ -3,7 +3,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from portal.models import TravelDetails
 
-class TravelForm(forms.ModelForm):
+class TravelInsertForm(forms.ModelForm):
   class Meta:
     model = TravelDetails
     exclude = [
@@ -17,3 +17,4 @@ class TravelForm(forms.ModelForm):
     self.helper.form_method = 'post'
     self.helper.add_input(Submit('submit', 'Draft'))
     self.helper.add_input(Submit('submit', 'Submit'))
+

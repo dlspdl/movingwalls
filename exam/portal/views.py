@@ -6,10 +6,11 @@ from geopy.distance import geodesic
 from django.conf import settings
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
-from portal.forms import TravelForm
+from portal.forms import TravelInsertForm
 from portal.models import Airport, Hotel, Fare 
 from portal.models import FareFormula, Location, TravelDetails
 
@@ -60,7 +61,6 @@ def comp_with_plane(objects):
 #  car_formula = FareFormula.objects.get(vehicle='car').values('formula')
 
 def comp_wout_plane(objects):
-  plane_fare = 0
   origin = objects.origin
   hotel = objects.hotel
 
@@ -109,9 +109,9 @@ def validator(objects):
   response = "Success"
   return response, objects, w_plane
 
-class TraverlInsertView(CreateView):
+class TravelInsertView(CreateView):
   model = TravelDetails
-  form_class = TravelForm
+  form_class = TravelInsertForm
   template_name = settings.BASE_DIR + '/portal/templates/travel_form.html'
   
   def form_valid(self, form):
@@ -134,4 +134,12 @@ class TraverlInsertView(CreateView):
       self.object.save()
       return HttpResponseRedirect(reverse('travelform'))
   
-    
+class TravelView(ListView): 
+  model = TravelDetails
+  template_name = settings.BASE_DIR + '/portal/templates/travel_view.html'
+  context_object_name = 'travel_details'
+
+  def get_queryset(self):
+    queryset = super(TravelView, self).get_queryset()
+    return queryset.filter(name=self.request.user)
+

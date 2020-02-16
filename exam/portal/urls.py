@@ -1,7 +1,8 @@
 from django.urls import path
 
-from portal.views import TraverlInsertView 
+from portal.views import TravelInsertView, TravelView 
 
 urlpatterns = [
-  path('travelform/', TraverlInsertView.as_view(), name='travelform' ),
+  path('travel/', TravelView.as_view(), name='travels' ),
+  path('travel/form/', TravelInsertView.as_view(), name='travelform' ),
 ]
