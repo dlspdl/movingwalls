@@ -1,8 +1,69 @@
 {% extends 'base.html' %}
 
-{% load crispy_forms_tags %}
+{% load template_filters %}
+{% load staticfiles%}
 
-{% block title %}Travels{% endblock %}
+{% block title %}Travel View{% endblock %}
+
+{% block imports %}
+  <link href="{% static 'mdb_4.13/css/mdb.min.css' %}" rel="stylesheet">
+  <link href="{% static 'mdb_4.13/css/addons/datatables.min.css' %}" rel="stylesheet">
+  <script src="{% static 'mdb_4.13/js/mdb.min.js' %}"></script>
+  <script src="{% static 'mdb_4.13/js/addons/datatables.min.js' %}"></script>
+  <script src="{% static 'js/travel_tables.js' %}"></script>
+{% endblock %}
 
 {% block content %}
+  <div class='container'> 
+    <div class="table-responsive fixed-table-body">
+      <table id='travel_table' class="table table-striped table-bordered table-sm dataTables_length" cellspacing="0" width="95%">
+        <thead>
+          <th scope="col">#</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Origin</th>
+          <th scope="col">hotel</th>
+          <th scope="col">With Airplane</th>
+          <th scope="col">Airport Origin</th>
+          <th scope="col">Airport Destination</th>
+          <th scope="col">Back And Forth</th>
+          <th scope="col">Taxi Fare</th>
+          <th scope="col">Air Fare</th>
+          <th scope="col">Status</th> 
+          <th scope="col">Approver</th>
+          <th scope="col">Approver Feedback</th>
+          <th scope="col">-</th>
+        </thead>
+        <tbody>
+          {% for row in travel_details %}
+          <tr>
+            <th scope="col">{{ row.pk }}</th>
+            <td style ="word-break:break-all;">{{ row.start_date }}</td>
+            <td style ="word-break:break-all;">{{ row.end_date }}</td>
+            <td style ="word-break:break-all;">{{ row.origin }}</td>
+            <td style ="word-break:break-all;">{{ row.hotel }}</td>
+            {% if row.plane_formula != '0' and row_plane_formula is not None %}
+              <td style ="word-break:break-all;"><input type='checkbox' checked=True' disabled='True'></td>
+            {% else %}
+              <td style ="word-break:break-all;"><input type='checkbox' disabled='True'></td>
+            {% endif %} 
+            <td style ="word-break:break-all;">{{ row.airport_origin }}</td>
+            <td style ="word-break:break-all;">{{ row.airport_dest }}</td>
+            <td style ="word-break:break-all;"><input type='checkbox' checked='{{ row.back_and_forth }}' disabled='True'></td>
+            <td style ="word-break:break-all;">{{ row.car_formula|compute }}</td> 
+            {% if row.plane_formula != '0' and row_plane_formula is not None %}
+              <td style ="word-break:break-all;">{{ row.plane_formula|compute }}</td> 
+            {% else %}
+              <td style ="word-break:break-all;">{{ row.plane_formula }}</td> 
+            {% endif %} 
+            <td style ="word-break:break-all;">{{ row.status }}</td>
+            <td style ="word-break:break-all;">{{ row.approver }}</td>
+            <td style ="word-break:break-all;">{{ row.approver_feedback }}</td>
+            <td style ="word-break:break-all;">1</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 {% endblock %}

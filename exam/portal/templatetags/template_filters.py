@@ -4,4 +4,4 @@ register = template.Library()
 
 @register.filter
 def compute(value): 
-  return eval(value)
+  return round(eval(value),2)

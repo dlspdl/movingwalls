@@ -40,10 +40,20 @@ class TravelInsertView(LoginRequiredMixin, CreateView):
   
 class TravelView(LoginRequiredMixin, ListView): 
   model = TravelDetails
-  template_name = settings.BASE_DIR + '/portal/templates/travel_view.html'
-  context_object_name = 'travel_details'
+  template_name = settings.BASE_DIR + '/portal/templates/travels.html'
+  context_object_name = 'travels'
 
   def get_queryset(self):
     queryset = super(TravelView, self).get_queryset()
     return queryset.filter(name=self.request.user)
+
+class TravelApproverView(LoginRequiredMixin, ListView): 
+  model = TravelDetails
+  template_name = settings.BASE_DIR + '/portal/templates/travel_view.html'
+  context_object_name = 'travel_details'
+
+  def get_queryset(self):
+    queryset = super(TravelApproverView, self).get_queryset()
+    return queryset.filter(approver=self.request.user)
+
 
