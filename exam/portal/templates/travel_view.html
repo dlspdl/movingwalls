@@ -68,33 +68,35 @@
   </div>
   <div class='modal'>
     <div class='modal-content'>
-      <span id='close' style='text-align: right' class="close">&times;</span>
-      <form action='' method='POST'>
-        <div class="form-group row">
-          <h1>Approval Form<h1>
-        </div>
-        <div class="form-group row">
-          <label for='pk' class="col-sm-2 col-form-label">ID:</label>
-          <div class="col-sm-10">
-            <input type='text' class="form-control" id='pk' readonly>
+      <div class='container'>
+        <span id='close' style='text-align: right' class="close">&times;</span>
+        <form action='' method='POST' name="approval">
+          <div class="form-group row">
+            <h1>Approval Form<h1>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for='status' class="col-sm-2 col-form-label">STATUS:</label>
-          <div class="col-sm-10">
-            <input type='textbox' class="form-control" id='status'>
+          <div class="form-group row">
+            <label for='pk' class="col-sm-2 col-form-label">ID:</label>
+            <div class="col-sm-10">
+              <input type='text' class="form-control" id='pk' name="pk" readonly>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for='reason' class="col-sm-2 col-form-label">REASON:</label>
-          <div class="col-sm-10">
-            <textarea id="reason" class="form-control" rows="4" cols="50"></textarea>
+          <div class="form-group row">
+            <label for='status' class="col-sm-2 col-form-label">STATUS:</label>
+            <div class="col-sm-10">
+              <input type='text' class="form-control" id='status' name="status" readonly>
+            </div>
           </div>
-        </div>
-        <div class="form-group row" style='text-align: right'>
-          <input type='SUBMIT' value='SUBMIT' class="btn btn-sm btn-primary">
-        </div>
-      </form>
+          <div class="form-group row">
+            <label for='reason' class="col-sm-2 col-form-label">REASON:</label>
+            <div class="col-sm-10">
+              <textarea id="reason" name="reason" class="form-control" rows="4" cols="50"></textarea>
+            </div>
+          </div>
+          <div class="float-right form-group row" style='text-align: right'>
+            <input type='SUBMIT' value='SUBMIT' class="btn btn-sm btn-primary">
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 {% endblock %}

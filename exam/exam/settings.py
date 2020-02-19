@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #Third Party
-    'crispy_forms', # Django bootstrap forms
+    'crispy_forms', 
+    'rest_framework',
     #Apps
     'portal',
 ]
