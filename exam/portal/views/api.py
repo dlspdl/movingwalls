@@ -13,30 +13,35 @@ class TravelMgrApprovalAPI(LoginRequiredMixin,APIView):
   parser_classes = [JSONParser] 
   
   def post(self, request, format=None):
-    pk = request.data["pk"]
-    reason = request.data["reason"]
-    status = request.data["status"]
+    if not user.groups.filter(name="MANAGER").exists():
+      return Response(status=403)
+
+    data = request.data
+    data["user"] = request.user
     
     try: 
-      details = TravelDetails.objects.get(pk=pk)
-      details.status = status
-      details.approver_reason = reason 
+      details = TravelDetails.objects.get(pk=data["pk"],approver=data["user"])
+      details.status = data["status"]
+      details.approver_reason = data["approver_reason"] 
       details.save()
       return Response(status=201)
     except TravelDetails.DoesNotExist:
       return Response(status=400)
 
-#class TravelFMgrApprovalAPI(LoginRequiredMixin, APIView):
-#  def post(self, request, format=None):
-#    pk = request.pk
-#    reason = request.reason
-#    status = request.status
-#    user = request.user
-#    
-#    try: 
-#      details = TravelDetails.objects.get(pk=pk,approver=user)
-#      details.status = status
-#      details.approver_reason = reason 
-#      return response(status=201)
-#    except TravelDetails.DoesNotExist:
-#      return response(status=400)
+class TravelFMgrApprovalAPI(LoginRequiredMixin,APIView):
+  parser_classes = [JSONParser] 
+  
+  def post(self, request, format=None):
+    if not user.groups.filter(name="F_MANAGER").exists():
+      return Response(status=403)
+
+    data = request.data
+    
+    try: 
+      details = TravelDetails.objects.get(pk=data["pk"])
+      details.status = data["status"]
+      details.approver_reason = data["approver_reason"] 
+      details.save()
+      return Response(status=201)
+    except TravelDetails.DoesNotExist:
+      return Response(status=422)

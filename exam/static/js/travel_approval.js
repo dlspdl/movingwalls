@@ -27,13 +27,12 @@ $(function () {
     var json = {
       pk: $("#pk").val(),
       status: $("#status").val(),
-      reason: $("#reason").val()
+      approver_reason: $("#approver_reason").val()
     };
     var crf_token = getCookie('csrftoken');
-    alert(JSON.stringify(json))
 
     request = $.ajax({
-      url: "/portal/travel/mgr/change_status/",
+      url: url,
       type: "POST",
       headers:{"X-CSRFToken": crf_token},
       data: JSON.stringify(json),
@@ -41,10 +40,12 @@ $(function () {
     });
 
     request.done(function (response, textStatus, jqXHR){
-      console.log("Hooray, it worked!");
+      alert("Done!")
+      location.reload(true);
     });
 
     request.fail(function (jqXHR, textStatus, errorThrown){
+      alert("Something went wrong!")
       console.error(
         "The following error occurred: "+
         textStatus, errorThrown, jqXHR

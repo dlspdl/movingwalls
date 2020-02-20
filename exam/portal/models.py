@@ -87,11 +87,14 @@ class Hotel(models.Model):
     null=False, 
     default=0) 
 
+  class meta:
+    unique_together = ['name', 'location']
+  
   def __str__(self):
-    return '%s' % (self.name,)
+    return '%s: %s' % (self.name, self.location)
 
   def __unicode__(self):
-    return '%s' % (self.name,)
+    return '%s: %s' % (self.name, self.location)
  
 ## Main Form Model
 
@@ -159,7 +162,8 @@ class TravelDetails(models.Model):
     User, 
     related_name = 'approver',
     on_delete = models.PROTECT,
-    null = True)
+    null = True,
+    blank = True)
   approver_feedback = models.CharField(max_length=300, blank=True, null=True) 
   status = models.CharField(
     max_length = 10,

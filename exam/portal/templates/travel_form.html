@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
-{% load staticfiles%}
 
+{% load template_filters %}
+{% load staticfiles%}
 {% load crispy_forms_tags %}
 
 {% block title %}Travel Form{% endblock %}
 
+
 {% block imports %}
+  {% if request.user|has_group:"F_MANAGER" or request.user|has_group:"MANAGER" %}
+    <meta http-equiv="REFRESH" content="0;url=/">
+  {% endif %}
   <link href="{% static 'css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
   <script src="{% static 'js/travel_form.js' %}"></script>
   <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>

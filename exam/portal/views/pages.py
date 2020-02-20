@@ -16,12 +16,20 @@ class TravelInsertView(LoginRequiredMixin, CreateView):
   model = TravelDetails
   form_class = TravelInsertForm
   template_name = settings.BASE_DIR + '/portal/templates/travel_form.html'
-  
+
+  def get_form_kwargs(self):
+    kwargs = super().get_form_kwargs()
+    kwargs['user'] = self.request.user
+    return kwargs
+ 
   def form_valid(self, form):
     self.object = form.save(commit = False)
     storage = messages.get_messages(self.request)
     storage.used = True
     self.object.name = self.request.user 
+
+    if self.request.user.groups.filter(name__in=["MANAGER","F_MANAGER"]).exists():
+      return HttpResponseRedirect(reverse('home'))
 
     #Validator
     response, objects, w_plane = fc.validator(self.object)
@@ -48,11 +56,19 @@ class TravelView(LoginRequiredMixin, ListView):
 
 class TravelApproverView(LoginRequiredMixin, ListView): 
   model = TravelDetails
-  template_name = settings.BASE_DIR + '/portal/templates/travel_view.html'
+  template_name = settings.BASE_DIR + '/portal/templates/travel_approval.html'
   context_object_name = 'travel_details'
 
   def get_queryset(self):
     queryset = super(TravelApproverView, self).get_queryset()
-    return queryset.filter(approver=self.request.user)
+
+    if self.request.user.groups.filter(name="F_MANAGER").exists():
+      return queryset.filter(status="SUBMITTED")
+    elif self.request.user.groups.filter(name="MANAGER").exists():
+      return queryset.filter(
+        approver=self.request.user,status="SUBMITTED")
+    else:
+      return queryset.none()
+
 
 

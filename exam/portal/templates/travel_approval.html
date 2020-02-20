@@ -11,7 +11,14 @@
   <link href="{% static 'mdb_4.13/css/addons/datatables.min.css' %}" rel="stylesheet">
   <script src="{% static 'mdb_4.13/js/mdb.min.js' %}"></script>
   <script src="{% static 'mdb_4.13/js/addons/datatables.min.js' %}"></script>
-  <script src="{% static 'js/travels.js' %}"></script>
+  <script src="{% static 'js/travel_approval.js' %}"></script>
+  {% if request.user|has_group:"F_MANAGER" %}
+    <script> var url='/portal/travel/fmgr/change_status/'; </script>
+  {% elif request.user|has_group:"MANAGER" %}
+    <script> var url='/portal/travel/mgr/change_status/'; </script>
+  {% else %}
+    <meta http-equiv="REFRESH" content="0;url=/">
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -89,7 +96,7 @@
           <div class="form-group row">
             <label for='reason' class="col-sm-2 col-form-label">REASON:</label>
             <div class="col-sm-10">
-              <textarea id="reason" name="reason" class="form-control" rows="4" cols="50"></textarea>
+              <textarea id="approver_reason" name="approver_reason" class="form-control" rows="4" cols="50"></textarea>
             </div>
           </div>
           <div class="float-right form-group row" style='text-align: right'>
