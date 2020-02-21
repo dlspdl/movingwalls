@@ -1,0 +1,478 @@
+[
+    {
+        "model": "portal.location",
+        "pk": 1,
+        "fields": {
+            "name": "Quezon City",
+            "longitude": "121.05090000",
+            "latitude": "14.64880000",
+            "tier": 1
+        }
+    },
+    {
+        "model": "portal.location",
+        "pk": 2,
+        "fields": {
+            "name": "Cebu City",
+            "longitude": "123.89166700",
+            "latitude": "10.31111100",
+            "tier": 2
+        }
+    },
+    {
+        "model": "portal.location",
+        "pk": 3,
+        "fields": {
+            "name": "Baguio City",
+            "longitude": "120.59099800",
+            "latitude": "16.41715500",
+            "tier": 1
+        }
+    },
+    {
+        "model": "portal.location",
+        "pk": 4,
+        "fields": {
+            "name": "Pasay City",
+            "longitude": "120.99581800",
+            "latitude": "14.54559000",
+            "tier": 1
+        }
+    },
+    {
+        "model": "portal.location",
+        "pk": 5,
+        "fields": {
+            "name": "Olongapo",
+            "longitude": "120.28511800",
+            "latitude": "14.83890800",
+            "tier": 1
+        }
+    },
+    {
+        "model": "portal.location",
+        "pk": 6,
+        "fields": {
+            "name": "Tarlac City",
+            "longitude": "120.59794000",
+            "latitude": "15.48016900",
+            "tier": 1
+        }
+    },
+    {
+        "model": "portal.location",
+        "pk": 7,
+        "fields": {
+            "name": "Marikina City",
+            "longitude": "121.11179600",
+            "latitude": "14.64138000",
+            "tier": 1
+        }
+    },
+    {
+        "model": "portal.location",
+        "pk": 8,
+        "fields": {
+            "name": "Antipolo",
+            "longitude": "121.17570000",
+            "latitude": "14.58860000",
+            "tier": 1
+        }
+    },
+    {
+        "model": "portal.location",
+        "pk": 9,
+        "fields": {
+            "name": "City of Para\u00f1aque",
+            "longitude": "120.99073700",
+            "latitude": "14.49775200",
+            "tier": 1
+        }
+    },
+    {
+        "model": "portal.vehicle",
+        "pk": "car",
+        "fields": {}
+    },
+    {
+        "model": "portal.vehicle",
+        "pk": "plane",
+        "fields": {}
+    },
+    {
+        "model": "portal.airport",
+        "pk": 1,
+        "fields": {
+            "name": "NAIA",
+            "location": 9,
+            "capacity": 100
+        }
+    },
+    {
+        "model": "portal.airport",
+        "pk": 2,
+        "fields": {
+            "name": "Mactan International Airport",
+            "location": 2,
+            "capacity": 100
+        }
+    },
+    {
+        "model": "portal.fare",
+        "pk": 1,
+        "fields": {
+            "vehicle": "car",
+            "fare_type": "base_fare",
+            "price": "500.00",
+            "tstamp": "2020-02-09"
+        }
+    },
+    {
+        "model": "portal.fare",
+        "pk": 2,
+        "fields": {
+            "vehicle": "car",
+            "fare_type": "km_price",
+            "price": "12.00",
+            "tstamp": "2020-02-09"
+        }
+    },
+    {
+        "model": "portal.fare",
+        "pk": 3,
+        "fields": {
+            "vehicle": "plane",
+            "fare_type": "base_fare",
+            "price": "300.00",
+            "tstamp": "2020-02-10"
+        }
+    },
+    {
+        "model": "portal.fare",
+        "pk": 4,
+        "fields": {
+            "vehicle": "plane",
+            "fare_type": "km_price",
+            "price": "50.00",
+            "tstamp": "2020-02-10"
+        }
+    },
+    {
+        "model": "portal.fareformula",
+        "pk": 1,
+        "fields": {
+            "vehicle": "car",
+            "formula": "base_fare + ( (km_price * KM) * (KM / 10  ) )"
+        }
+    },
+    {
+        "model": "portal.fareformula",
+        "pk": 2,
+        "fields": {
+            "vehicle": "plane",
+            "formula": "base_fare + (km_price * KM)"
+        }
+    },
+    {
+        "model": "portal.hotel",
+        "pk": 1,
+        "fields": {
+            "name": "Heritage",
+            "room_name": "Sample",
+            "no_of_pax": 5,
+            "location": 4,
+            "start_date": "2020-02-10",
+            "end_date": "2022-02-10",
+            "price": "2000.00",
+            "no_of_rooms": 5
+        }
+    },
+    {
+        "model": "portal.hotel",
+        "pk": 2,
+        "fields": {
+            "name": "Grami Hotel",
+            "room_name": "Couple Room",
+            "no_of_pax": 2,
+            "location": 9,
+            "start_date": "2020-02-10",
+            "end_date": "2022-02-10",
+            "price": "5000.00",
+            "no_of_rooms": 5
+        }
+    },
+    {
+        "model": "portal.hotel",
+        "pk": 3,
+        "fields": {
+            "name": "Cebu hotel",
+            "room_name": "Family Room",
+            "no_of_pax": 6,
+            "location": 2,
+            "start_date": "2020-02-11",
+            "end_date": "2022-02-11",
+            "price": "10000.00",
+            "no_of_rooms": 2
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 16,
+        "fields": {
+            "name": 1,
+            "start_date": "2020-02-14",
+            "end_date": "2020-02-15",
+            "origin": 4,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 2,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*5.321251020708087)*(5.321251020708087/10))",
+            "plane_formula": null,
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "ACCEPT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 17,
+        "fields": {
+            "name": 1,
+            "start_date": "2020-02-14",
+            "end_date": "2020-02-15",
+            "origin": 1,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 2,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*17.92608723345984)*(17.92608723345984/10))",
+            "plane_formula": null,
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "ACCEPT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 18,
+        "fields": {
+            "name": 1,
+            "start_date": "2020-02-15",
+            "end_date": "2020-02-16",
+            "origin": 1,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*12.869855389498579)*(12.869855389498579/10))",
+            "plane_formula": null,
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "DRAFT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 19,
+        "fields": {
+            "name": 1,
+            "start_date": "2020-02-19",
+            "end_date": "2020-02-21",
+            "origin": 9,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*5.321251020708087)*(5.321251020708087/10))",
+            "plane_formula": "0",
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "DRAFT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 20,
+        "fields": {
+            "name": 2,
+            "start_date": "2020-02-24",
+            "end_date": "2020-02-26",
+            "origin": 4,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*0.0)*(0.0/10))",
+            "plane_formula": "0",
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "DRAFT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 21,
+        "fields": {
+            "name": 2,
+            "start_date": "2020-02-24",
+            "end_date": "2020-02-26",
+            "origin": 4,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*0.0)*(0.0/10))",
+            "plane_formula": "0",
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "DRAFT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 22,
+        "fields": {
+            "name": 2,
+            "start_date": "2020-02-24",
+            "end_date": "2020-02-26",
+            "origin": 4,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*0.0)*(0.0/10))",
+            "plane_formula": "0",
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "DRAFT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 23,
+        "fields": {
+            "name": 2,
+            "start_date": "2020-02-23",
+            "end_date": "2020-02-25",
+            "origin": 4,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*0.0)*(0.0/10))",
+            "plane_formula": "0",
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "DRAFT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 24,
+        "fields": {
+            "name": 2,
+            "start_date": "2020-02-23",
+            "end_date": "2020-02-25",
+            "origin": 4,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*0.0)*(0.0/10))",
+            "plane_formula": "0",
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "DRAFT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 25,
+        "fields": {
+            "name": 2,
+            "start_date": "2020-02-23",
+            "end_date": "2020-02-25",
+            "origin": 4,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*0.0)*(0.0/10))",
+            "plane_formula": "0",
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "DRAFT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 26,
+        "fields": {
+            "name": 2,
+            "start_date": "2020-02-24",
+            "end_date": "2020-02-26",
+            "origin": 1,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*12.869855389498579)*(12.869855389498579/10))",
+            "plane_formula": "0",
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "DRAFT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 27,
+        "fields": {
+            "name": 2,
+            "start_date": "2020-02-24",
+            "end_date": "2020-02-26",
+            "origin": 1,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*12.869855389498579)*(12.869855389498579/10))",
+            "plane_formula": "0",
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "DRAFT"
+        }
+    },
+    {
+        "model": "portal.traveldetails",
+        "pk": 28,
+        "fields": {
+            "name": 2,
+            "start_date": "2020-02-23",
+            "end_date": "2020-02-26",
+            "origin": 3,
+            "mode_of_travel": "C",
+            "airport_origin": null,
+            "airport_dest": null,
+            "hotel": 1,
+            "back_and_forth": false,
+            "car_formula": "500.00+((12.00*211.60161029871995)*(211.60161029871995/10))",
+            "plane_formula": "0",
+            "approver": 1,
+            "approver_feedback": null,
+            "status": "SUBMITTED"
+        }
+    }
+]
