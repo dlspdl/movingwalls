@@ -28,6 +28,9 @@ class TravelInsertView(LoginRequiredMixin, CreateView):
     storage.used = True
     self.object.name = self.request.user 
 
+    if 'submit' in self.request.POST and self.request.POST["submit"] == "Submit":
+      self.object.status = "SUBMITTED"
+
     if self.request.user.groups.filter(name__in=["MANAGER","F_MANAGER"]).exists():
       return HttpResponseRedirect(reverse('home'))
 
@@ -36,14 +39,14 @@ class TravelInsertView(LoginRequiredMixin, CreateView):
 
     if response != "Success":
       messages.add_message(self.request, messages.ERROR, response)
-      return HttpResponseRedirect(reverse('travelform'))
+      return HttpResponseRedirect(reverse('travel_form'))
     else:
       #Success
       objects = fc.comp_with_plane(objects) if w_plane == 1 else fc.comp_wout_plane(objects)
       self.object = objects
       messages.add_message(self.request, messages.INFO, 'Success.')
       self.object.save()
-      return HttpResponseRedirect(reverse('travelform'))
+      return HttpResponseRedirect(reverse('travels'))
   
 class TravelView(LoginRequiredMixin, ListView): 
   model = TravelDetails

@@ -91,10 +91,10 @@ class Hotel(models.Model):
     unique_together = ['name', 'location']
   
   def __str__(self):
-    return '%s: %s' % (self.name, self.location)
+    return 'Hotel:%s\nRoom:%s\nPax:%s\nRate:%s' % (self.name, self.location, self.no_of_pax, self.price)
 
   def __unicode__(self):
-    return '%s: %s' % (self.name, self.location)
+    return 'Hotel:%s\nRoom:%s\nPax:%s\nRate:%s' % (self.name, self.location, self.no_of_pax, self.price)
  
 ## Main Form Model
 
@@ -123,7 +123,7 @@ class TravelDetails(models.Model):
 
   name = models.ForeignKey(
     User, 
-    related_name='requestor',
+    related_name='user',
     on_delete=models.PROTECT)
   start_date = models.DateField(null=False, blank=False) 
   end_date = models.DateField(null=False, blank=False) 

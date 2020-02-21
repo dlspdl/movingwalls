@@ -11,6 +11,13 @@
   <script src="{% static 'mdb_4.13/js/mdb.min.js' %}"></script>
   <script src="{% static 'mdb_4.13/js/addons/datatables.min.js' %}"></script>
   <script src="{% static 'js/travel_tables.js' %}"></script>
+  <script> 
+    {% if messages %}
+      {% for message in messages %}
+        alert("{{ message }}")
+      {% endfor %}
+    {% endif %}
+  </script>
 {% endblock %}
 
 {% block content %}
@@ -35,7 +42,7 @@
           <th scope="col">-</th>
         </thead>
         <tbody>
-          {% for row in travel_details %}
+          {% for row in travels %}
           <tr>
             <th scope="col">{{ row.pk }}</th>
             <td style ="word-break:break-all;">{{ row.start_date }}</td>
@@ -56,10 +63,15 @@
             {% else %}
               <td style ="word-break:break-all;">{{ row.plane_formula }}</td> 
             {% endif %} 
-            <td style ="word-break:break-all;">{{ row.status }}</td>
+            <td>{{ row.status }}</td>
             <td style ="word-break:break-all;">{{ row.approver }}</td>
             <td style ="word-break:break-all;">{{ row.approver_feedback }}</td>
-            <td style ="word-break:break-all;">1</td>
+            <td>
+              {% if row.status == "DRAFT" %}
+                <button type="button" class="btn btn-sm btn-danger" value='{{ row.pk }}'>DELETE</button>
+                <button type="button" class="btn btn-sm btn-success" value='{{ row.pk }}'>EDIT</button>
+              {% endif %}
+            </td>
           </tr>
           {% endfor %}
         </tbody>
