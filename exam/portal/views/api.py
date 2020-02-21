@@ -9,6 +9,20 @@ from portal import functions as fc
 from portal.models import Airport, Hotel, Fare 
 from portal.models import FareFormula, Location, TravelDetails
 
+class TravelDeleteAPI(LoginRequiredMixin,APIView):
+  parser_classes = [JSONParser] 
+  
+  def post(self, request, format=None):
+    data = request.data
+    data["user"] = request.user
+    
+    try: 
+      details = TravelDetails.objects.get(pk=data["pk"],approver=data["user"])
+      details.delete()
+      return Response(status=201)
+    except TravelDetails.DoesNotExist:
+      return Response(status=400)
+
 class TravelMgrApprovalAPI(LoginRequiredMixin,APIView):
   parser_classes = [JSONParser] 
   
