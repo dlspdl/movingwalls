@@ -45,10 +45,12 @@ def comp_with_plane(objects):
   plane = re.sub('KM', str(distance3), plane_formula.formula)
 
   for fare in plane_fare:
-    plane1 = re.sub(fare.fare_type, str(round(fare.price,2)), plane1)
+    plane = re.sub(fare.fare_type, str(round(fare.price,2)), plane)
 
-#  car_fare = Fare.objects.filter(vehicle='car')
-#  car_formula = FareFormula.objects.get(vehicle='car').values('formula')
+  objects.car_formula = "( " + car1 + ") + ( " +  car2 + " )"
+  objects.plane_formula = plane 
+
+  return objects
 
 def comp_wout_plane(objects):
   origin = objects.origin

@@ -9,9 +9,11 @@ const newDate = addDays(date, 2);
 
 $(function () {
   $(".dateinput").attr("autocomplete", "off");
-  $(".dateinput").append("autocomplete='off'");
 
-  $("input[name='end_date']").prop('disabled', true);
+  if ( $("input[name='end_date']").val() == "" ) {    
+    $("input[name='end_date']").prop('disabled', true);
+  }
+
   $("input[name='end_date']").datepicker({
     format: 'yyyy-mm-dd',
     startDate: newDate
