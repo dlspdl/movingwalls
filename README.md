@@ -1,15 +1,23 @@
+## SCOPE
+
+-- Can make draft,submit and delete travel forms.
+-- Approvals and rejection for MANAGER and FINANCIAL MANAGER
+-- Login mechanism and logic is based of django's built in login tool.
+-- Computation is dynamic.
+-- Roles are based on Django grouping table
+
+## LIMITATIONS
+
+-- No design
+-- Did not put local coveyance, due to lack of understanding in this department of logic
+-- Did not put Request for Information, I believe that should be grounds for rejection already and refiling so it is logged
+-- Computation is dynamic which is why I made the computation part of the travel details in text form to 
+   log its computation even though this is not normalized.
+-- No indexing, for testing purposes only.
+-- No maps and images, due to the API's I've found has credit card payment
+
 ## Requirements
-Django==2.2.9
-django-crispy-forms==1.8.1
-django-filter==2.2.0
-djangorestframework==3.11.0
-geographiclib==1.50
-geopy==1.21.0
-Markdown==3.1.1
-pkg-resources==0.0.0
-Pygments==2.5.2
-pytz==2019.3
-sqlparse==0.3.0
+exam/etx/pip_requirements.txt
 
 #Fixins
 exam/fixtures/*_main.json
